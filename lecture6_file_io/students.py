@@ -1,3 +1,4 @@
+import os
 import csv
 
 ####################################################################################################################
@@ -84,4 +85,24 @@ for student in sorted(students, key = lambda student: student["name"]):
     print(f"{student['name']} is from {student['city']}/{student['state']}")
 
 print()
+
+####################################################################################################################
+name: str = input("What's your name? ")
+home: str = input("Where's your home? ")
+
+file_name: str = "students3.csv"
+file_size: int
+
+try:
+    file_size = os.path.getsize(file_name)
+except FileNotFoundError :
+    file_size = 0
+
+with open(file_name, "a") as file:
+    writer = csv.writer(file)
+    if file_size == 0: writer.writerow(["name", "home"])
+    writer.writerow([name, home])
+
+    dict_writer = csv.DictWriter(file, fieldnames = ["name", "home"])
+    dict_writer.writerow({"home": "_" + home, "name": "_" + name})
 
