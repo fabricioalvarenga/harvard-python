@@ -34,7 +34,7 @@ def main():
     print("Title:", name.title())
 
     # Split the string
-    u: list[str] = name.split()
+    u = name.split()
     print("Split:", u)
 
     g: complex = complex(8, 2)
